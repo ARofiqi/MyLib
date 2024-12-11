@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
   card: {
     margin: 6,
     borderRadius: 5,
-    width: '45%',
+    width: 160,
+    height: 400,
   },
   image: {
     width: '100%',

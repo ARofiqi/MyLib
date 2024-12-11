@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  FlatList,
   Image,
   StyleSheet,
   ScrollView,
@@ -78,24 +77,21 @@ const Home = ({navigation}) => {
             </Text>
           </View>
         ) : (
-          <FlatList
-            data={filteredBooks}
-            numColumns={2}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <CardBook
-                id={item.id}
-                title={item.title}
-                author={item.author}
-                genre={item.genre}
-                year={item.year}
-                image={item.image}
-                navigation={navigation}
-              />
-            )}
-            scrollEnabled={false}
-            contentContainerStyle={styles.flatListContent}
-          />
+          <View style={styles.bookContainer}>
+            {filteredBooks.map(item => (
+              <View key={item.id} style={styles.gridItem}>
+                <CardBook
+                  id={item.id}
+                  title={item.title}
+                  author={item.author}
+                  genre={item.genre}
+                  year={item.year}
+                  image={item.image}
+                  navigation={navigation}
+                />
+              </View>
+            ))}
+          </View>
         )}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -104,7 +100,7 @@ const Home = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
     backgroundColor: colors.white,
     minHeight: '100%',
   },
@@ -126,9 +122,6 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 16,
   },
-  flatListContent: {
-    paddingBottom: 20,
-  },
   loadingIndicator: {
     marginVertical: 20,
   },
@@ -142,6 +135,15 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  bookContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+  },
+  gridItem: {
+    marginBottom: 15,
   },
 });
 
