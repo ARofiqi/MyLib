@@ -83,11 +83,13 @@ AppPerpustakaanOnline/
    ```
 5. Ajukan Pull Request ke branch utama.
 
-## Lisensi
-Aplikasi ini dilisensikan di bawah [MIT License](LICENSE).
+## Tugas 
 
-## Kontak
-Jika Anda memiliki pertanyaan atau masukan, silakan hubungi:
-- Email: support@perpustakaanonline.com
-- GitHub: [username](https://github.com/username)
+Buatlah halaman homepage yang responsive
+![WhatsApp Image 2024-12-11 at 11 43 39](https://github.com/user-attachments/assets/c8285671-514f-4de4-a5aa-bc81e0b4fca5)
+![WhatsApp Image 2024-12-11 at 11 43 38](https://github.com/user-attachments/assets/23c57ffa-f672-4a74-be51-f073aa7d7f00)
+![WhatsApp Image 2024-12-11 at 11 43 38 (1)](https://github.com/user-attachments/assets/dad27e71-3ce5-4a3e-95dc-abd54b69b912)
+
+Buatlah minimal 3 buah unit test
+![image](https://github.com/user-attachments/assets/e5ef2912-8b4e-44f0-be1f-9e57f65e83cc)
 
