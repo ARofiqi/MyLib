@@ -1,79 +1,95 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# AppPerpustakaanOnline
 
-# Getting Started
+## Deskripsi
+Aplikasi **AppPerpustakaanOnline** adalah platform berbasis mobile yang dirancang untuk mempermudah pengelolaan inventaris buku di perpustakaan secara online. Dengan fitur pencarian, peminjaman, dan pengembalian buku, aplikasi ini membantu pengguna untuk mengakses layanan perpustakaan dengan lebih mudah.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Fitur Utama
+- **Manajemen Buku**: Menambah, mengedit, dan menghapus data buku.
+- **Peminjaman Buku**: Pengguna dapat meminjam buku secara online.
+- **Pengembalian Buku**: Melacak buku yang telah dipinjam dan mengembalikannya.
+- **Pencarian Buku**: Fitur pencarian berdasarkan judul, penulis, atau kategori.
+- **Laporan**: Menampilkan data statistik peminjaman buku.
 
-## Step 1: Start the Metro Server
+## Teknologi yang Digunakan
+- **Frontend**: React Native
+- **Backend**: Express.js
+- **Database**: SQLite
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Instalasi dan Penggunaan
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Prasyarat
+- Node.js (>= 18)
+- npm atau yarn
+- Emulator Android/iOS atau perangkat fisik
 
-```bash
-# using npm
-npm start
+### Langkah Instalasi
+1. Clone repositori:
+   ```bash
+   git clone https://github.com/username/AppPerpustakaanOnline.git
+   cd AppPerpustakaanOnline
+   ```
+2. Instal dependencies:
+   ```bash
+   npm install
+   ```
+3. Jalankan aplikasi di emulator atau perangkat fisik:
+   - Untuk Android:
+     ```bash
+     npm run android
+     ```
+   - Untuk iOS:
+     ```bash
+     npm run ios
+     ```
 
-# OR using Yarn
-yarn start
+### API Endpoint
+Aplikasi ini terhubung dengan backend yang mendukung operasi CRUD. Berikut adalah daftar endpoint:
+
+- **GET** `/books`: Mendapatkan daftar buku.
+- **POST** `/books`: Menambahkan buku baru.
+- **PUT** `/books/:id`: Mengedit informasi buku.
+- **DELETE** `/books/:id`: Menghapus buku.
+- **POST** `/borrow`: Memproses peminjaman buku.
+- **POST** `/return`: Memproses pengembalian buku.
+
+## Struktur Direktori
+```
+AppPerpustakaanOnline/
+├── android/
+├── ios/
+├── src/
+│   ├── components/
+│   ├── screens/
+│   ├── services/
+│   └── utils/
+├── package.json
+├── README.md
+└── .gitignore
 ```
 
-## Step 2: Start your Application
+## Kontribusi
+1. Fork repositori ini.
+2. Buat branch baru untuk fitur/bugfix:
+   ```bash
+   git checkout -b fitur-anda
+   ```
+3. Lakukan perubahan dan commit:
+   ```bash
+   git commit -m "Deskripsi perubahan"
+   ```
+4. Push ke branch Anda:
+   ```bash
+   git push origin fitur-anda
+   ```
+5. Ajukan Pull Request ke branch utama.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Tugas 
 
-### For Android
+Buatlah halaman homepage yang responsive
+![WhatsApp Image 2024-12-11 at 11 43 39](https://github.com/user-attachments/assets/c8285671-514f-4de4-a5aa-bc81e0b4fca5)
+![WhatsApp Image 2024-12-11 at 11 43 38](https://github.com/user-attachments/assets/23c57ffa-f672-4a74-be51-f073aa7d7f00)
+![WhatsApp Image 2024-12-11 at 11 43 38 (1)](https://github.com/user-attachments/assets/dad27e71-3ce5-4a3e-95dc-abd54b69b912)
 
-```bash
-# using npm
-npm run android
+Buatlah minimal 3 buah unit test
+![image](https://github.com/user-attachments/assets/e5ef2912-8b4e-44f0-be1f-9e57f65e83cc)
 
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
