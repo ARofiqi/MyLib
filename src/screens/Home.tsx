@@ -20,6 +20,13 @@ const {
   closeDatabase,
 } = require('../sql');
 
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withDelay,
+} from 'react-native-reanimated';
+
 const colors = {
   primary: '#133E87',
   secondary: '#B59F78',
@@ -88,19 +95,40 @@ const Home = ({navigation}) => {
           </View>
         ) : (
           <View style={styles.bookContainer}>
-            {filteredBooks.map(item => (
-              <View key={item.id} style={styles.gridItem}>
-                <CardBook
-                  id={item.id || 'N/A'}
-                  title={item.title || 'Judul tidak tersedia'}
-                  author={item.author || 'Penulis tidak diketahui'}
-                  genre={item.genre || 'Genre tidak diketahui'}
-                  year={item.year || 'Tahun tidak diketahui'}
-                  image={item.image || null}
-                  navigation={navigation}
-                />
-              </View>
-            ))}
+            {filteredBooks.map((item, index) => {
+              const animationValue = useSharedValue(0);
+
+              useEffect(() => {
+                animationValue.value = withDelay(
+                  index * 100,
+                  withTiming(1, {duration: 500}),
+                );
+              }, []);
+
+              // Gaya animasi
+              const animatedStyle = useAnimatedStyle(() => ({
+                opacity: animationValue.value,
+                transform: [
+                  {
+                    translateY: (1 - animationValue.value) * 20,
+                  },
+                ],
+              }));
+
+              return (
+                <Animated.View key={item.id} style={[styles.gridItem, animatedStyle]}>
+                  <CardBook
+                    id={item.id || 'N/A'}
+                    title={item.title || 'Judul tidak tersedia'}
+                    author={item.author || 'Penulis tidak diketahui'}
+                    genre={item.genre || 'Genre tidak diketahui'}
+                    year={item.year || 'Tahun tidak diketahui'}
+                    image={item.image || null}
+                    navigation={navigation}
+                  />
+                </Animated.View>
+              );
+            })}
           </View>
         )}
       </ScrollView>
