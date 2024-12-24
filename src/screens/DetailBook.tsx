@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import api from '../axios';
+import {addBookmark, createBookmarkTable} from '../sql';
 
 const colors = {
   primary: '#133E87',
@@ -34,8 +35,21 @@ const DetailBook = ({route, navigation}) => {
       });
   };
 
+  const handleBookmark = () => {
+    if (!book) return;
+
+    addBookmark(book, success => {
+      if (success) {
+        Alert.alert('Berhasil', `Buku "${book.title}" berhasil di-bookmark`);
+      } else {
+        Alert.alert('Gagal', 'Terjadi kesalahan saat menambahkan bookmark');
+      }
+    });
+  };
+
   useEffect(() => {
     fetchData(id);
+    createBookmarkTable();
   }, [id]);
 
   return (
@@ -68,7 +82,9 @@ const DetailBook = ({route, navigation}) => {
           <Text style={styles.summaryTitle}>Deskripsi:</Text>
           <Text style={styles.summaryText}>{book.summary}</Text>
 
-          <TouchableOpacity style={styles.bookmarkButton}>
+          <TouchableOpacity
+            style={styles.bookmarkButton}
+            onPress={handleBookmark}>
             <Text style={styles.bookmarkButtonText}>Bookmark Buku</Text>
           </TouchableOpacity>
         </>

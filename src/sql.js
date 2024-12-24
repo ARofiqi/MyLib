@@ -113,9 +113,65 @@ const closeDatabase = () => {
   }
 };
 
+const createBookmarkTable = () => {
+  if (!db) {
+    console.error('Database tidak tersedia');
+    return;
+  }
+
+  db.transaction(tx => {
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS bookmarks (
+        id INTEGER PRIMARY KEY NOT NULL,
+        book_id INTEGER NOT NULL,
+        title TEXT NOT NULL,
+        author TEXT NOT NULL,
+        genre TEXT,
+        year INTEGER,
+        image TEXT,
+        summary TEXT
+      );`,
+      [],
+      () => {
+        console.log('Tabel bookmarks berhasil dibuat');
+      },
+      error => {
+        console.error('Error membuat tabel bookmarks:', error);
+      },
+    );
+  });
+};
+
+const addBookmark = (book, callback) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      `INSERT OR REPLACE INTO bookmarks (book_id, title, author, genre, year, image, summary) VALUES (?, ?, ?, ?, ?, ?, ?);`,
+      [
+        book.id,
+        book.title,
+        book.author,
+        book.genre,
+        book.year,
+        book.image,
+        book.summary,
+      ],
+      () => {
+        console.log(`Buku "${book.title}" berhasil di-bookmark`);
+        callback(true);
+      },
+      error => {
+        console.error('Error menambahkan bookmark:', error);
+        callback(false);
+      },
+    );
+  });
+};
+
 module.exports = {
   createTable,
+  createBookmarkTable,
   insertBooks,
   fetchBooksFromDB,
+  addBookmark,
   closeDatabase,
 };
