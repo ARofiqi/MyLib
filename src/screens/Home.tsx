@@ -13,6 +13,12 @@ import {
 import api from '../axios';
 import SearchBar from '../components/SearchBar';
 import CardBook from '../components/CardBook';
+const {
+  createTable,
+  insertBooks,
+  fetchBooksFromDB,
+  closeDatabase,
+} = require('../sql');
 
 const colors = {
   primary: '#133E87',
@@ -30,17 +36,21 @@ const Home = ({navigation}) => {
     api
       .get('/books')
       .then(response => {
-        setBooks(response.data);
+        const booksFromAPI = response.data;
+        insertBooks(booksFromAPI);
+        fetchBooksFromDB(setBooks);
         setLoading(false);
       })
       .catch(err => {
         console.error(err);
+        fetchBooksFromDB(setBooks);
         setLoading(false);
       });
   };
 
   useEffect(() => {
     fetchData();
+    createTable();
   }, []);
 
   const filteredBooks = books.filter(book =>
@@ -81,12 +91,12 @@ const Home = ({navigation}) => {
             {filteredBooks.map(item => (
               <View key={item.id} style={styles.gridItem}>
                 <CardBook
-                  id={item.id}
-                  title={item.title}
-                  author={item.author}
-                  genre={item.genre}
-                  year={item.year}
-                  image={item.image}
+                  id={item.id || 'N/A'}
+                  title={item.title || 'Judul tidak tersedia'}
+                  author={item.author || 'Penulis tidak diketahui'}
+                  genre={item.genre || 'Genre tidak diketahui'}
+                  year={item.year || 'Tahun tidak diketahui'}
+                  image={item.image || null}
                   navigation={navigation}
                 />
               </View>
